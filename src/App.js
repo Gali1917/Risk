@@ -7,6 +7,7 @@ import SignupPages from "./pages/SignupPages";
 import AccountPage from "./pages/AccountPage";
 import SigninPage from "./pages/SigninPage";
 import Header from "./components/ui/Header";
+import { PrivateRoute, PublicRoute } from "./components/PrivateRoute";
 
 import { UserProvider } from "./context/providers/userContext";
 
@@ -15,13 +16,15 @@ function App() {
     <main>
       <Router>
         <UserProvider>
-          <Header/>
+          <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/signup" element={<SignupPages />} />
             <Route path="/account" element={<AccountPage />} />
-            <Route path="/signin" element={<SigninPage />} />
 
+            <Route element={<PublicRoute />}>
+              <Route path="/signup" element={<SignupPages />} />
+              <Route path="/signin" element={<SigninPage />} />
+            </Route>
           </Routes>
         </UserProvider>
       </Router>

@@ -5,14 +5,7 @@ const HomePage = () => {
   return (
       <section>
         <article>
-          <ul className="buttons">
-            <li>
-              <Link to="/signup">Registrarse</Link>
-            </li>
-            <li>
-                <Link to="/signin">Iniciar Sesion</Link>
-            </li>
-          </ul>
+          <h1>HOME!</h1>
         </article>
       </section>
   );

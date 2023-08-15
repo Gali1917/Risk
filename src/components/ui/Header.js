@@ -18,7 +18,7 @@ const Header = () => {
           </Link>
           {isLoggedIn ? (
             <Link
-              to="/logout"
+              to="/"
               onClick={() => {
                 logout();
               }}

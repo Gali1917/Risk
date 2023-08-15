@@ -56,7 +56,7 @@ export const userReducer = (state = initialState, action) => {
         isLoading: false,
         errorMessage: payload,
       };
-    case userActions.USER_LOGOU:
+    case userActions.USER_LOGOUT:
       return{
         ...state,
         isLoading: false,

@@ -25,7 +25,6 @@ const SigninPage = () => {
     e.preventDefault();
     try {
       const userResponse = await loginUser(user);
-      console.log(user);
       if (userResponse) {
         toast.success(`Hola de nuevo ${user.name}`, {
           position: "bottom-right",
