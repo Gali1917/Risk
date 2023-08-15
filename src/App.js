@@ -26,6 +26,7 @@ function App() {
               <Route path="/signup" element={<SignupPages />} />
               <Route path="/signin" element={<SigninPage />} />
             </Route>
+            
           </Routes>
         </UserProvider>
       </Router>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/providers/userContext";
 import { loginUserRequest } from "../api/userApi";
 import { toast } from "react-hot-toast";
@@ -113,6 +113,7 @@ const SigninPage = () => {
                 </button>
               </Form>
             </Formik>
+                <Link to="/signup">Registrase...</Link>
           </div>
         )}
       </article>

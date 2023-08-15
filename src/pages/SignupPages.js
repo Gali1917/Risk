@@ -164,8 +164,10 @@ const SignupPages = () => {
                 >
                   {isLoading ? "Cargando..." : "Enviar"}
                 </button>
+
               </Form>
             </Formik>
+            <Link to="/singin">Atras</Link>
           </div>
         )}
       </article>
