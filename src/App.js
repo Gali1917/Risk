@@ -18,6 +18,7 @@ function App() {
         <UserProvider>
           <Header />
           <Routes>
+            <Route path="*" element={<HomePage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/account" element={<AccountPage />} />
 
