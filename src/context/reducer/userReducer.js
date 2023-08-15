@@ -35,6 +35,26 @@ export const userReducer = (state = initialState, action) => {
         isLoading: false,
         errorMessage: payload,
       };
+    case userActions.USER_SIGNIN:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case userActions.USER_SIGNIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        token: payload.token,
+        user: payload.user,
+        isLoggedIn: true,
+        errorMessage: null,
+      };
+    case userActions.USER_SIGNIN_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        errorMessage: payload,
+      };
     default:
       return state;
   }

@@ -1,24 +1,21 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/providers/userContext";
+import { loginUserRequest } from "../api/userApi";
+import { toast } from "react-hot-toast";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
 
-import { useUser } from "../context/providers/userContext";
 
-const SignupPages = () => {
+const SigninPage = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    name: "",
     email: "",
     password: "",
-    number: "",
-    document: "",
   });
 
-  const { registerUser, isLoading, errorMessage } = useUser();
+  const { loginUser, isLoading, errorMessage } = useUser();
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -27,12 +24,17 @@ const SignupPages = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userResponse = await registerUser(user);
+      const userResponse = await loginUser(user);
+      console.log(user);
       if (userResponse) {
-        toast.success(`Hola ${user.name}, te damos la bienvenida.`, {
+        toast.success(`Hola de nuevo ${user.name}`, {
           position: "bottom-right",
         });
         navigate("/account");
+      } else {
+        toast.error("Credenciales invalidas. Intente nuevamente.", {
+          position: "bottom-right",
+        });
       }
     } catch (error) {
       toast.error(`${error}`, {
@@ -51,7 +53,6 @@ const SignupPages = () => {
             <Formik
               initialValues={user}
               validationSchema={Yup.object({
-                name: Yup.string().required("*"),
                 email: Yup.string()
                   .required("*")
                   .email("Debe ser un email valido.")
@@ -59,31 +60,12 @@ const SignupPages = () => {
                 password: Yup.string()
                   .required("*")
                   .min(6, "La contraseña debe tener minimo 6 caracteres."),
-                number: Yup.string().required("*"),
-                document: Yup.string().required("*"),
               })}
               onSubmit={handleSubmit}
               enableReinitialize={true}
               className="form"
             >
               <Form onSubmit={handleSubmit}>
-                <ErrorMessage
-                  className="error-message"
-                  component="p"
-                  name="name"
-                />
-                <div className="input-label-signup">
-                  <Field
-                    className="input-signup"
-                    name="name"
-                    id="name"
-                    required
-                    onChange={handleChange}
-                  />
-                  <label className="label-signup" htmlFor="name">
-                    Nombre
-                  </label>
-                </div>
                 <ErrorMessage
                   className="error-message"
                   component="p"
@@ -100,40 +82,6 @@ const SignupPages = () => {
                   />
                   <label className="label-signup" htmlFor="email">
                     Email
-                  </label>
-                </div>
-                <ErrorMessage
-                  className="error-message"
-                  component="p"
-                  name="number"
-                />
-                <div className="input-label-signup">
-                  <Field
-                    className="input-signup"
-                    name="number"
-                    type="number"
-                    required
-                    onChange={handleChange}
-                  />
-                  <label className="label-signup" htmlFor="number">
-                    Numero
-                  </label>
-                </div>
-                <ErrorMessage
-                  className="error-message"
-                  component="p"
-                  name="document"
-                />
-                <div className="input-label-signup">
-                  <Field
-                    className="input-signup"
-                    name="document"
-                    type="number"
-                    required
-                    onChange={handleChange}
-                  />
-                  <label className="label-signup" htmlFor="document">
-                    Documento
                   </label>
                 </div>
                 <ErrorMessage
@@ -159,10 +107,10 @@ const SignupPages = () => {
                   className="button-enter-signup"
                   type="submit"
                   disabled={
-                    !user.email || !user.password || !user.document || isLoading
+                    !user.email || !user.password || isLoading
                   }
                 >
-                  {isLoading ? "Cargando..." : "Enviar"}
+                  {isLoading ? "Cargando..." : "Entrar"}
                 </button>
               </Form>
             </Formik>
@@ -173,4 +121,4 @@ const SignupPages = () => {
   );
 };
 
-export default SignupPages;
+export default SigninPage;

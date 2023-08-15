@@ -1,5 +1,9 @@
 import { createContext, useContext, useReducer } from "react";
-import { getProfileRequest, registerUserRequest } from "../../api/userApi";
+import {
+  getProfileRequest,
+  registerUserRequest,
+  loginUserRequest,
+} from "../../api/userApi";
 import { userReducer, initialState } from "../reducer/userReducer";
 import { userActions } from "../actions/userActions";
 
@@ -43,11 +47,41 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const loginUser = async ({ email, password }) => {
+    dispatch({ type: userActions.USER_SIGNIN });
+    try {
+      const res = await loginUserRequest({ email, password });
+      const { token } = res.data;
+      localStorage.setItem("token", token);
+      if (token) {
+        const resUser = await getProfileRequest(token);
+        localStorage.setItem("user", JSON.stringify(resUser.data));
+        dispatch({
+          type: userActions.USER_SIGNIN_SUCCESS,
+          payload: {
+            token,
+            user: resUser.data,
+          },
+        });
+        return resUser.data;
+      }
+    } catch (error) {
+      if (error) {
+        dispatch({
+          type: userActions.USER_SIGNIN_ERROR,
+          payload: error,
+        });
+      }
+      console.log(error);
+    }
+  };
+
   return (
     <userContext.Provider
       value={{
         ...state,
         registerUser,
+        loginUser,
       }}
     >
       {children}

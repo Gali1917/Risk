@@ -7,6 +7,11 @@ export const registerUserRequest = async (user) => {
   return result;
 };
 
+export const loginUserRequest = async (user) => {
+  const result = await axios.post(`${apiURL}/api/auth/signin`, user);
+  return result;
+}
+
 export const getProfileRequest = async (token) => {
   return await axios.get(`${apiURL}/api/auth/profile`, {
     headers: {
