@@ -1,0 +1,15 @@
+header {
+    padding: 4px;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 82px;
+    display: flex;
+    flex-direction: row;
+}
+.logo-header {
+  width: 60px;
+}
+.logo-header img {
+  width: 100%;
+}

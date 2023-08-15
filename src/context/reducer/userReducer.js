@@ -5,6 +5,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 export const initialState = {
   isLoading: false,
+  isLoggedIn: false,
   // isLoggedIn: Boolean(token),
   user: user || null,
   token: token || "",
@@ -55,6 +56,14 @@ export const userReducer = (state = initialState, action) => {
         isLoading: false,
         errorMessage: payload,
       };
+    case userActions.USER_LOGOU:
+      return{
+        ...state,
+        isLoading: false,
+        user: null,
+        token: null,
+        isLoggedIn: false,
+      }
     default:
       return state;
   }

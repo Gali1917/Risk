@@ -1,8 +1,10 @@
-
 ul li {
   list-style: none;
 }
 a {
   color: white;
   text-decoration: none;
+}
+section{
+  padding-top: 82px;
 }

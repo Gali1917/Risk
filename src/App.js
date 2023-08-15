@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import SignupPages from "./pages/SignupPages";
 import AccountPage from "./pages/AccountPage";
 import SigninPage from "./pages/SigninPage";
+import Header from "./components/ui/Header";
 
 import { UserProvider } from "./context/providers/userContext";
 
@@ -14,6 +15,7 @@ function App() {
     <main>
       <Router>
         <UserProvider>
+          <Header/>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/signup" element={<SignupPages />} />

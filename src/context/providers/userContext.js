@@ -76,12 +76,18 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const logout = async () => {
+    await localStorage.clear();
+    dispatch({ type: userActions.USER_LOGOUT });
+  };
+
   return (
     <userContext.Provider
       value={{
         ...state,
         registerUser,
         loginUser,
+        logout,
       }}
     >
       {children}
