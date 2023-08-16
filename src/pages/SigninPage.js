@@ -118,7 +118,14 @@ const SigninPage = () => {
                 </button>
               </Form>
             </Formik>
-            <button className="button-register" to="/signup">Registrase...</button>
+            <button
+              className="button-register"
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              Registrase...
+            </button>
           </div>
         )}
       </article>

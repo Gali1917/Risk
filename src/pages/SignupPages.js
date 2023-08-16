@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 import { useUser } from "../context/providers/userContext";
+import "../styles/register.css";
+import { Loading } from "../components/Loading";
 
 const SignupPages = () => {
   const navigate = useNavigate();
@@ -44,8 +46,9 @@ const SignupPages = () => {
   return (
     <section>
       <article>
+        <h4 className="title-login">REGISTRO DE USUARIOS</h4>
         {isLoading ? (
-          <p>Cargando...</p>
+          <Loading />
         ) : (
           <div className="form">
             <Formik
@@ -73,6 +76,9 @@ const SignupPages = () => {
                   name="name"
                 />
                 <div className="input-label-signup">
+                  <label className="label-signup" htmlFor="name">
+                    Nombre
+                  </label>
                   <Field
                     className="input-signup"
                     name="name"
@@ -80,9 +86,6 @@ const SignupPages = () => {
                     required
                     onChange={handleChange}
                   />
-                  <label className="label-signup" htmlFor="name">
-                    Nombre
-                  </label>
                 </div>
                 <ErrorMessage
                   className="error-message"
@@ -90,6 +93,9 @@ const SignupPages = () => {
                   name="email"
                 />
                 <div className="input-label-signup">
+                  <label className="label-signup" htmlFor="email">
+                    Email
+                  </label>
                   <Field
                     className="input-signup"
                     name="email"
@@ -98,9 +104,6 @@ const SignupPages = () => {
                     autoComplete="username"
                     onChange={handleChange}
                   />
-                  <label className="label-signup" htmlFor="email">
-                    Email
-                  </label>
                 </div>
                 <ErrorMessage
                   className="error-message"
@@ -108,6 +111,9 @@ const SignupPages = () => {
                   name="number"
                 />
                 <div className="input-label-signup">
+                  <label className="label-signup" htmlFor="number">
+                    Numero
+                  </label>
                   <Field
                     className="input-signup"
                     name="number"
@@ -115,9 +121,6 @@ const SignupPages = () => {
                     required
                     onChange={handleChange}
                   />
-                  <label className="label-signup" htmlFor="number">
-                    Numero
-                  </label>
                 </div>
                 <ErrorMessage
                   className="error-message"
@@ -125,6 +128,9 @@ const SignupPages = () => {
                   name="document"
                 />
                 <div className="input-label-signup">
+                  <label className="label-signup" htmlFor="document">
+                    Documento
+                  </label>
                   <Field
                     className="input-signup"
                     name="document"
@@ -132,9 +138,6 @@ const SignupPages = () => {
                     required
                     onChange={handleChange}
                   />
-                  <label className="label-signup" htmlFor="document">
-                    Documento
-                  </label>
                 </div>
                 <ErrorMessage
                   className="error-message"
@@ -142,6 +145,9 @@ const SignupPages = () => {
                   name="password"
                 />
                 <div className="input-label-signup">
+                  <label className="label-signup" htmlFor="password">
+                    Contraseña
+                  </label>
                   <Field
                     className="input-signup"
                     name="password"
@@ -150,9 +156,6 @@ const SignupPages = () => {
                     autoComplete="current-password"
                     onChange={handleChange}
                   />
-                  <label className="label-signup" htmlFor="password">
-                    Contraseña
-                  </label>
                 </div>
 
                 <button
@@ -164,10 +167,9 @@ const SignupPages = () => {
                 >
                   {isLoading ? "Cargando..." : "Enviar"}
                 </button>
-
               </Form>
             </Formik>
-            <Link to="/singin">Atras</Link>
+            <Link to="/signin">Atras</Link>
           </div>
         )}
       </article>

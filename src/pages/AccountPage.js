@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useUser } from "../context/providers/userContext";
+import { Loading } from "../components/Loading";
 
 const AccountPage = () => {
   const { user, isLoading } = useUser();
@@ -8,8 +9,8 @@ const AccountPage = () => {
   return (
     <section>
       <article className="perfil">
-        {isLoading ? (
-          <p>Cargando...</p>
+      {isLoading ? (
+          <Loading />
         ) : (
           <div className="perfil-title">
             <h1>{user.name}</h1>

@@ -1,7 +1,6 @@
 :root {
   --color1: #d9d9d9;
 }
-
 .title-login {
   text-align: center;
 }
@@ -38,12 +37,13 @@ form {
   justify-content: space-between;
 }
 .label-signin {
-  width: 100%;
   padding-right: 12px;
   text-align: end;
+  width: 82px;
 }
 .input-signin {
   background-color: var(--color1);
+  width: 200px;
   border: none;
   border-radius: 4px;
 }

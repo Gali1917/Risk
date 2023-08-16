@@ -6,10 +6,15 @@ header {
   height: 82px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 .logo-header {
   width: 220px;
 }
 .logo-header img {
   width: 100%;
+}
+nav{
+  padding-right: 8px;
+  text-align: end;
 }

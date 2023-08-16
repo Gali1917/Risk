@@ -9,7 +9,10 @@ const Header = () => {
   return (
     <header>
       <div className="logo-header">
-        <img src="https://i.postimg.cc/rs47rpb2/LOGO-RISK-SOLUTIONS-GROUP-Final.png" alt="Logo" />
+        <img
+          src="https://i.postimg.cc/rs47rpb2/LOGO-RISK-SOLUTIONS-GROUP-Final.png"
+          alt="Logo"
+        />
       </div>
       <nav>
         <ul>
@@ -17,14 +20,19 @@ const Header = () => {
             <li>Home</li>
           </Link>
           {isLoggedIn ? (
-            <Link
-              to="/"
-              onClick={() => {
-                logout();
-              }}
-            >
-              <li>Logout</li>
-            </Link>
+            <>
+              <Link
+                to="/"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                <li>Logout</li>
+              </Link>
+              <Link to="/account">
+                <li>Perfil</li>
+              </Link>
+            </>
           ) : (
             <Link to="/signin">
               <li>Login</li>
