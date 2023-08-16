@@ -6,5 +6,9 @@ a {
   text-decoration: none;
 }
 section{
-  padding-top: 82px;
+  padding: 8px;
+  padding-top: 102px;
+}
+article{
+  padding: 8px;
 }

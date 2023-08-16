@@ -5,7 +5,8 @@ import { loginUserRequest } from "../api/userApi";
 import { toast } from "react-hot-toast";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-
+import { Loading } from "../components/Loading";
+import "../styles/login.css";
 
 const SigninPage = () => {
   const navigate = useNavigate();
@@ -45,10 +46,16 @@ const SigninPage = () => {
   return (
     <section>
       <article>
+        <h4 className="title-login">SISTEMA DE CONSULTA DE RESULTADOS</h4>
         {isLoading ? (
-          <p>Cargando...</p>
+          <Loading />
         ) : (
           <div className="form">
+            <div>
+              <div className="home-login">
+                <h5>Home</h5>
+              </div>
+            </div>
             <Formik
               initialValues={user}
               validationSchema={Yup.object({
@@ -70,50 +77,48 @@ const SigninPage = () => {
                   component="p"
                   name="email"
                 />
-                <div className="input-label-signup">
+                <div className="input-label-signin">
+                  <label className="label-signin" htmlFor="email">
+                    Email
+                  </label>
                   <Field
-                    className="input-signup"
+                    className="input-signin"
                     name="email"
                     type="text"
                     required
                     autoComplete="username"
                     onChange={handleChange}
                   />
-                  <label className="label-signup" htmlFor="email">
-                    Email
-                  </label>
                 </div>
                 <ErrorMessage
                   className="error-message"
                   component="p"
                   name="password"
                 />
-                <div className="input-label-signup">
+                <div className="input-label-signin">
+                  <label className="label-signin" htmlFor="password">
+                    Contraseña
+                  </label>
                   <Field
-                    className="input-signup"
+                    className="input-signin"
                     name="password"
                     type="password"
                     required
                     autoComplete="current-password"
                     onChange={handleChange}
                   />
-                  <label className="label-signup" htmlFor="password">
-                    Contraseña
-                  </label>
                 </div>
 
                 <button
-                  className="button-enter-signup"
+                  className="button-enter-signin"
                   type="submit"
-                  disabled={
-                    !user.email || !user.password || isLoading
-                  }
+                  disabled={!user.email || !user.password || isLoading}
                 >
                   {isLoading ? "Cargando..." : "Entrar"}
                 </button>
               </Form>
             </Formik>
-                <Link to="/signup">Registrase...</Link>
+            <button className="button-register" to="/signup">Registrase...</button>
           </div>
         )}
       </article>
